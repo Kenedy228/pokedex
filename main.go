@@ -3,7 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"github.com/Kenedy228/pokedex/commands"
+	"github.com/Kenedy228/pokedex/internal/commands"
 	"os"
 )
 

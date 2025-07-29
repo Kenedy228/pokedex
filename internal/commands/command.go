@@ -2,9 +2,8 @@ package commands
 
 import (
 	"fmt"
+	"github.com/Kenedy228/pokedex/internal/requests"
 	"os"
-
-	"github.com/Kenedy228/pokedex/requests"
 )
 
 type CLICommand struct {

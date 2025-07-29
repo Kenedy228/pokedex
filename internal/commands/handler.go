@@ -2,7 +2,7 @@ package commands
 
 import (
 	"fmt"
-	"github.com/Kenedy228/pokedex/common"
+	"github.com/Kenedy228/pokedex/internal/common"
 )
 
 type CommandHandler struct {

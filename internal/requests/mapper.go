@@ -2,7 +2,7 @@ package requests
 
 import (
 	"encoding/json"
-	"github.com/Kenedy228/pokedex/entities"
+	"github.com/Kenedy228/pokedex/internal/entities"
 	"net/http"
 )
 
