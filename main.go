@@ -1,7 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"github.com/Kenedy228/pokedex/commands"
+	"os"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
+	scanner := bufio.NewScanner(os.Stdin)
+	handler := commands.NewHandler()
+
+	for {
+		fmt.Print("Pokedex > ")
+		scanner.Scan()
+		handler.HandleCommand(scanner.Text())
+	}
 }
