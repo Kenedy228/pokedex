@@ -3,13 +3,17 @@ package commands
 import (
 	"fmt"
 	"os"
+
+	"github.com/Kenedy228/pokedex/requests"
 )
 
 type CLICommand struct {
 	Name        string
 	Description string
-	Callback    func()
+	Callback    func() error
 }
+
+const mapURL = "https://pokeapi.co/api/v2/location/"
 
 func getDefaultCommands() map[string]CLICommand {
 	commands := map[string]CLICommand{
@@ -23,17 +27,23 @@ func getDefaultCommands() map[string]CLICommand {
 			Description: "Displays a help message",
 			Callback:    commandHelp,
 		},
+		"map": {
+			Name:        "map",
+			Description: "Displays location-areas",
+			Callback:    commandMap,
+		},
 	}
 
 	return commands
 }
 
-func commandExit() {
+func commandExit() error {
 	fmt.Println("Closing the Pokedex... Goodbye!")
 	os.Exit(0)
+	return nil
 }
 
-func commandHelp() {
+func commandHelp() error {
 	fmt.Println("Welcome to the Pokedex!")
 	fmt.Println("Usage:\n")
 
@@ -42,4 +52,28 @@ func commandHelp() {
 	for _, value := range commands {
 		fmt.Printf("%s: %s\n", value.Name, value.Description)
 	}
+
+	return nil
+}
+
+func commandMap() error {
+	mapper, err := requests.NewMapper(mapURL)
+
+	if err != nil {
+		return err
+	}
+
+	locations, err := mapper.Handle()
+
+	if err != nil {
+		return err
+	}
+
+	for _, v := range locations {
+		for _, a := range v.Areas {
+			fmt.Printf("%s\n", a.Name)
+		}
+	}
+
+	return nil
 }

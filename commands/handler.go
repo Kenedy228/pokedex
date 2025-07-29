@@ -25,12 +25,20 @@ func (h CommandHandler) HandleCommand(userInput string) {
 		return
 	}
 
+	var err error
+
 	switch cleaned[0] {
 	case "exit":
-		h.commands["exit"].Callback()
+		err = h.commands["exit"].Callback()
 	case "help":
-		h.commands["help"].Callback()
+		err = h.commands["help"].Callback()
+	case "map":
+		err = h.commands["map"].Callback()
 	default:
 		fmt.Println("Unknown command")
+	}
+
+	if err != nil {
+		fmt.Printf("%v", err)
 	}
 }
