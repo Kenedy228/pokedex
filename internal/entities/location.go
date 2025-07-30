@@ -6,4 +6,5 @@ type Location struct {
 
 type Area struct {
 	Name string `json:"name"`
+	URL  string `json:"url"`
 }
